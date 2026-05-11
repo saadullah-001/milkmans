@@ -5,6 +5,8 @@ import 'package:milkman/app/di/di.dart';
 import 'package:milkman/core/routing/app_router.dart';
 import 'package:milkman/core/theme/extensions/context_ext.dart';
 import 'package:milkman/core/theme/theme_cubit.dart';
+import 'package:milkman/features/auth/presentation/cubits/session_cubit.dart';
+import 'package:milkman/features/auth/presentation/cubits/auth_bloc.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -12,8 +14,12 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final router = getIt<AppRouter>().router;
-    return BlocProvider(
-      create: (_) => getIt<ThemeCubit>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => getIt<ThemeCubit>()),
+        BlocProvider(create: (_) => getIt<SessionCubit>()),
+        BlocProvider(create: (_) => getIt<AuthBloc>()),
+      ],
       child: BlocBuilder<ThemeCubit, ThemeState>(
         builder: (context, state) {
           return MaterialApp.router(

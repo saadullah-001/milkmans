@@ -9,12 +9,21 @@ Future<void> configureDependencies() async {
     () => FirebaseFirestore.instance,
   );
 
-  //core
+  // Auth Data Layer
+  getIt.registerLazySingleton<AuthRemoteDataSource>(
+    () => AuthRemoteDataSourceImpl(getIt<FirebaseAuth>()),
+  );
+
+  getIt.registerLazySingleton<AuthRepository>(
+    () => AuthRepositoryImpl(getIt<AuthRemoteDataSource>()),
+  );
+
+  // Auth Presentation Layer
+  getIt.registerSingleton<SessionCubit>(SessionCubit(getIt<AuthRepository>()));
+
+  getIt.registerSingleton<AuthBloc>(AuthBloc(getIt<AuthRepository>()));
+
+  // Core
   getIt.registerLazySingleton<AppRouter>(() => AppRouter());
   getIt.registerLazySingleton<ThemeCubit>(() => ThemeCubit());
-
-  // TODO (next steps):
-  // - AuthRepository + AuthBloc
-  // - SessionCubit (auth state stream)
-  // - RouteGuards use session
 }

@@ -19,6 +19,4 @@ extension ContextX on BuildContext {
 
   /// Combined scale you can use for typography.
   double get textScale => (uiScale * sysTextScale).clamp(0.90, 1.25);
-
-  bool get isDarkMode => Theme.of(this).brightness == Brightness.dark;
 }
