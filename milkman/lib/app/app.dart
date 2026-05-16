@@ -6,7 +6,7 @@ import 'package:milkman/core/routing/app_router.dart';
 import 'package:milkman/core/theme/extensions/context_ext.dart';
 import 'package:milkman/core/theme/theme_cubit.dart';
 import 'package:milkman/features/auth/presentation/cubits/session_cubit.dart';
-import 'package:milkman/features/auth/presentation/cubits/auth_bloc.dart';
+import 'package:milkman/features/auth/presentation/bloc/auth/auth_bloc.dart';
 
 class App extends StatelessWidget {
   const App({super.key});

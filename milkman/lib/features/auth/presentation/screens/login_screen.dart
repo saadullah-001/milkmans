@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:milkman/core/routing/route_path.dart';
-import 'package:milkman/features/auth/presentation/cubits/auth_bloc.dart';
+import 'package:milkman/features/auth/presentation/bloc/auth/auth_bloc.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -54,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
         }
       },
       child: Scaffold(
-        appBar: AppBar(title: const Text('Login')),
+        appBar: AppBar(title: const Text('Login'), centerTitle: true),
         body: Padding(
           padding: const EdgeInsets.all(24.0),
           child: Form(
@@ -92,8 +92,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   obscureText: true,
                   validator: (value) {
                     if (value?.isEmpty ?? true) return 'Password is required';
-                    if (value!.length < 6)
+                    if (value!.length < 6) {
                       return 'Password must be at least 6 characters';
+                    }
                     return null;
                   },
                 ),

@@ -79,4 +79,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'milkman-d0c74.firebasestorage.app',
     measurementId: 'G-4H2GCQDJX7',
   );
+
 }

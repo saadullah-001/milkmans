@@ -7,5 +7,5 @@ export 'package:milkman/core/theme/theme_cubit.dart';
 export 'package:milkman/features/auth/data/datasources/auth_remote_data_source.dart';
 export 'package:milkman/features/auth/data/repositories/auth_repository_impl.dart';
 export 'package:milkman/features/auth/domain/repositories/auth_repository.dart';
-export 'package:milkman/features/auth/presentation/cubits/auth_bloc.dart';
+export 'package:milkman/features/auth/presentation/bloc/auth/auth_bloc.dart';
 export 'package:milkman/features/auth/presentation/cubits/session_cubit.dart';

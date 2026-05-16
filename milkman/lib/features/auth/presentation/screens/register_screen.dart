@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:milkman/core/routing/route_path.dart';
-import 'package:milkman/features/auth/presentation/cubits/auth_bloc.dart';
+import 'package:milkman/features/auth/presentation/bloc/auth/auth_bloc.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});

@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart' as fa;
-import 'package:milkman/features/auth/data/models/user_model.dart';
+import 'package:milkman/features/auth/data/models/user_model/user_model.dart';
 
 abstract class AuthRemoteDataSource {
   Future<UserModel> loginWithEmail({
