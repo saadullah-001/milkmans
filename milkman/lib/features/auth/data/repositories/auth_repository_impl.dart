@@ -8,26 +8,9 @@ class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl(this._remoteDataSource);
 
   @override
-  Future<User> loginWithEmail({
-    required String email,
-    required String password,
-  }) async {
-    return await _remoteDataSource.loginWithEmail(
-      email: email,
-      password: password,
-    );
-  }
-
-  @override
-  Future<User> registerWithEmail({
-    required String email,
-    required String password,
-    required String displayName,
-  }) async {
-    return await _remoteDataSource.registerWithEmail(
-      email: email,
-      password: password,
-      displayName: displayName,
+  Future<User> loginWithPhoneNumber({required String phoneNumber}) async {
+    return await _remoteDataSource.loginWithPhoneNumber(
+      phoneNumber: phoneNumber,
     );
   }
 
@@ -47,8 +30,18 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<void> sendPasswordResetEmail(String email) async {
-    return await _remoteDataSource.sendPasswordResetEmail(email);
+  Future<void> sendOTP({required String phoneNumber}) async {
+    return await _remoteDataSource.sendOTP(phoneNumber: phoneNumber);
+  }
+
+  @override
+  Future<void> resendOTP({required String phoneNumber}) async {
+    return await _remoteDataSource.resendOTP(phoneNumber: phoneNumber);
+  }
+
+  @override
+  Future<User> verifyOTP({required String otpCode}) async {
+    return await _remoteDataSource.verifyOTP(otpCode: otpCode);
   }
 
   @override

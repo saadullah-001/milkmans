@@ -4,7 +4,7 @@ import 'app_dimens.dart';
 import 'app_typography.dart';
 
 abstract final class AppTheme {
-  static ThemeData light() {
+  static ThemeData light(BuildContext context) {
     final colorScheme = const ColorScheme(
       brightness: Brightness.light,
       primary: AppColors.primary,
@@ -18,7 +18,7 @@ abstract final class AppTheme {
       outline: AppColors.outline,
     );
 
-    return _baseTheme(colorScheme).copyWith(
+    return _baseTheme(colorScheme, context).copyWith(
       scaffoldBackgroundColor: AppColors.background,
       cardTheme: CardThemeData(
         color: AppColors.surface,
@@ -34,10 +34,10 @@ abstract final class AppTheme {
     );
   }
 
-  static ThemeData dark() {
+  static ThemeData dark(BuildContext context) {
     final colorScheme = const ColorScheme(
       brightness: Brightness.dark,
-      primary: AppColors.darkPrimary,
+      primary: AppColors.primary,
       onPrimary: Color(0xFF0B1220),
       secondary: AppColors.darkOrganic,
       onSecondary: Color(0xFF07140B),
@@ -48,7 +48,7 @@ abstract final class AppTheme {
       outline: AppColors.darkOutline,
     );
 
-    return _baseTheme(colorScheme).copyWith(
+    return _baseTheme(colorScheme, context).copyWith(
       scaffoldBackgroundColor: AppColors.darkBackground,
       cardTheme: CardThemeData(
         color: AppColors.darkSurface,
@@ -64,8 +64,8 @@ abstract final class AppTheme {
     );
   }
 
-  static ThemeData _baseTheme(ColorScheme scheme) {
-    final baseText = AppTypography.base();
+  static ThemeData _baseTheme(ColorScheme scheme, BuildContext context) {
+    final baseText = AppTypography.base(context);
 
     return ThemeData(
       useMaterial3: true,
@@ -117,7 +117,7 @@ abstract final class AppTheme {
         style: ElevatedButton.styleFrom(
           elevation: 0,
           backgroundColor: scheme.primary,
-          foregroundColor: scheme.onPrimary,
+          foregroundColor: Colors.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppDimens.radiusMd),
           ),

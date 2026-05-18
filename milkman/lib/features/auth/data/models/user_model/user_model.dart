@@ -7,10 +7,9 @@ part 'user_model.g.dart';
 class UserModel extends User {
   const UserModel({
     required super.id,
-    required super.email,
+    required super.phoneNumber,
     super.displayName,
     super.photoURL,
-    super.isEmailVerified,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
@@ -21,10 +20,9 @@ class UserModel extends User {
   factory UserModel.fromFirebaseUser(dynamic firebaseUser) {
     return UserModel(
       id: firebaseUser.uid,
-      email: firebaseUser.email ?? '',
+      phoneNumber: firebaseUser.phoneNumber ?? '',
       displayName: firebaseUser.displayName,
       photoURL: firebaseUser.photoURL,
-      isEmailVerified: firebaseUser.emailVerified,
     );
   }
 }

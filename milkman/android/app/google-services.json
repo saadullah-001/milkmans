@@ -12,7 +12,20 @@
           "package_name": "com.organicmandi.milkman"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "364939892957-em98id5s8fonrr66292739rjrq2kufft.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.organicmandi.milkman",
+            "certificate_hash": "6d63516173137838f94b76aa91dd4c85b8503f91"
+          }
+        },
+        {
+          "client_id": "364939892957-fepvt1l380242v3a3htahk3kgghe35sq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDDS1JRgySA0W7tZdBWKfE3ePzeUcV8bv8"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "364939892957-fepvt1l380242v3a3htahk3kgghe35sq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "364939892957-r32bt5j65f235n14q53n2clnm03a4q7m.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.organicmandi.milkman"
+              }
+            }
+          ]
         }
       }
     }

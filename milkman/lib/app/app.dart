@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:milkman/app/di/di.dart';
 import 'package:milkman/core/routing/app_router.dart';
+import 'package:milkman/core/theme/app_theme.dart';
 import 'package:milkman/core/theme/extensions/context_ext.dart';
 import 'package:milkman/core/theme/theme_cubit.dart';
 import 'package:milkman/features/auth/presentation/cubits/session_cubit.dart';
@@ -25,8 +26,8 @@ class App extends StatelessWidget {
           return MaterialApp.router(
             debugShowCheckedModeBanner: false,
             routerConfig: router,
-            darkTheme: state.darkTheme,
-            theme: state.lightTheme,
+            darkTheme: AppTheme.dark(context),
+            theme: AppTheme.light(context),
             themeMode: state.mode,
             builder: (context, child) {
               final mq = MediaQuery.of(context);
