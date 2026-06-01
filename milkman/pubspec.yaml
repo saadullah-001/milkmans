@@ -90,6 +90,7 @@ flutter:
     - assets/lottie/delivery.json
     - assets/lottie/payment.json
     - assets/images/milkman.png
+    - assets/images/card_background.png
 
   #   - images/a_dot_ham.jpeg
 

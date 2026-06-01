@@ -7,4 +7,5 @@ class Assets {
 
   static const String images = 'assets/images/';
   static const String milkman = '${Assets.images}milkman.png';
+  static const String cardbackground = '${Assets.images}card_background.png';
 }
