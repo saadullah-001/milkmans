@@ -10,6 +10,7 @@ plugins {
 
 android {
     namespace = "com.example.milkman"
+    namespace = "com.organicmandi.milkman"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 

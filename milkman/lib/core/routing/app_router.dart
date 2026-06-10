@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:milkman/core/routing/route_gaurds.dart';
 import 'package:milkman/core/routing/route_path.dart';
-import 'package:milkman/features/auth/presentation/cubits/session_cubit.dart';
 import 'package:milkman/features/auth/presentation/screens/login_screen.dart';
+<<<<<<< Updated upstream
 import 'package:milkman/features/auth/presentation/screens/splash_screen.dart';
 import 'package:milkman/features/auth/presentation/screens/onboarding_screen.dart';
 import 'package:milkman/features/auth/presentation/screens/otp_verification_screen.dart';
 import 'package:milkman/features/home/presentation/screens/home_screen.dart';
+=======
+import 'package:milkman/features/auth/presentation/screens/register_screen.dart';
+import 'package:milkman/features/home/home_screen.dart';
+>>>>>>> Stashed changes
 
 class AppRouter {
   GoRouter get router => _router;
@@ -64,3 +67,18 @@ class AppRouter {
     return null;
   }
 }
+<<<<<<< Updated upstream
+=======
+
+/// Splash screen - placeholder
+class _SplashScreen extends StatelessWidget {
+  const _SplashScreen();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(body: Center(child: CircularProgressIndicator()));
+  }
+}
+
+/// Home screen - placeholder
+>>>>>>> Stashed changes
