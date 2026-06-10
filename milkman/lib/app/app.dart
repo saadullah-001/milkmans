@@ -8,6 +8,7 @@ import 'package:milkman/core/theme/extensions/context_ext.dart';
 import 'package:milkman/core/theme/theme_cubit.dart';
 import 'package:milkman/features/auth/presentation/cubits/session_cubit.dart';
 import 'package:milkman/features/auth/presentation/bloc/auth/auth_bloc.dart';
+import 'package:milkman/features/milk/presentation/cubit/cart_cubit.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -20,6 +21,7 @@ class App extends StatelessWidget {
         BlocProvider(create: (_) => getIt<ThemeCubit>()),
         BlocProvider(create: (_) => getIt<SessionCubit>()),
         BlocProvider(create: (_) => getIt<AuthBloc>()),
+        BlocProvider(create: (_) => CartCubit()),
       ],
       child: BlocBuilder<ThemeCubit, ThemeState>(
         builder: (context, state) {

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:milkman/features/milk/presentation/cubit/cart_cubit.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String userName;
   final String location;
-  final VoidCallback onNotificationTap;
-  final bool hasNotification;
+  final VoidCallback onCartTap;
 
   const CustomAppBar({
     super.key,
     required this.userName,
     required this.location,
-    required this.onNotificationTap,
-    this.hasNotification = true,
+    required this.onCartTap,
   });
 
   @override
@@ -80,45 +80,63 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
             const SizedBox(width: 12),
 
-            // Notification Bell with Badge
-            GestureDetector(
-              onTap: onNotificationTap,
-              child: Container(
-                width: 40,
-                height: 40,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.05),
-                      blurRadius: 8,
-                      offset: const Offset(0, 2),
-                    ),
-                  ],
-                ),
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    const Icon(
-                      Icons.notifications_none_outlined,
-                      color: Color(0xFF1E293B),
-                      size: 22,
-                    ),
-                    if (hasNotification)
-                      Positioned(
-                        top: 10,
-                        right: 11,
-                        child: Container(
-                          width: 8,
-                          height: 8,
-                          decoration: const BoxDecoration(
-                            color: Colors.red,
-                            shape: BoxShape.circle,
+            Material(
+              color: Colors.white,
+              shape: const CircleBorder(),
+              elevation: 4,
+              shadowColor: Colors.black.withValues(alpha: 0.08),
+              child: InkWell(
+                customBorder: const CircleBorder(),
+                onTap: onCartTap,
+                child: SizedBox(
+                  width: 40,
+                  height: 40,
+                  child: Semantics(
+                    button: true,
+                    label: 'Open cart',
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        const Icon(
+                          Icons.shopping_cart_outlined,
+                          color: Color(0xFF1E293B),
+                          size: 22,
+                        ),
+                        Positioned(
+                          top: 8,
+                          right: 8,
+                          child: BlocSelector<CartCubit, CartState, int>(
+                            selector: (state) => state.itemCount,
+                            builder: (context, itemCount) {
+                              if (itemCount == 0) {
+                                return const SizedBox.shrink();
+                              }
+                              return Container(
+                                padding: const EdgeInsets.all(4),
+                                decoration: const BoxDecoration(
+                                  color: Colors.red,
+                                  shape: BoxShape.circle,
+                                ),
+                                constraints: const BoxConstraints(
+                                  minWidth: 18,
+                                  minHeight: 18,
+                                ),
+                                child: Text(
+                                  itemCount.toString(),
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              );
+                            },
                           ),
                         ),
-                      ),
-                  ],
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ),

@@ -48,6 +48,10 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final bool isDark = context.themeMode == ThemeMode.dark;
+    final size = MediaQuery.of(context).size;
+    final width = size.width;
+    final height = size.height;
+    final scale = (width / 375).clamp(0.85, 1.25);
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state.correction != null) {
@@ -82,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       //mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const SizedBox(height: 40),
+                        SizedBox(height: height * 0.05),
 
                         const Text(
                           "Welcome 👋",
@@ -92,14 +96,14 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
 
-                        const SizedBox(height: 8),
+                        SizedBox(height: height * 0.01),
 
                         const Text(
                           "Login with your phone number",
                           style: TextStyle(color: Colors.grey),
                         ),
 
-                        const SizedBox(height: 40),
+                        SizedBox(height: height * 0.05),
 
                         TextFormField(
                           controller: _phoneController,
@@ -121,19 +125,18 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ? AppColors.darkBackground
                                 : AppColors.background,
                             hintStyle: TextStyle(
-                              fontSize: 24,
+                              fontSize: 20 * scale,
                               fontWeight: FontWeight.bold,
-                              fontStyle: FontStyle.italic, // larger hint size
+                              fontStyle: FontStyle.italic,
                               color: Colors.grey,
                             ),
                             // This keeps the hint visible even when typing
                             floatingLabelBehavior: FloatingLabelBehavior.always,
                           ),
                           style: TextStyle(
-                            fontSize: 24,
+                            fontSize: 20 * scale,
                             fontWeight: FontWeight.bold,
-                            fontStyle:
-                                FontStyle.italic, // match text size with hint
+                            fontStyle: FontStyle.italic,
                           ),
                           validator: (value) {
                             if (value?.isEmpty ?? true) {
@@ -153,7 +156,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           // },
                         ),
 
-                        const SizedBox(height: 30),
+                        SizedBox(height: height * 0.035),
 
                         BlocBuilder<AuthBloc, AuthState>(
                           builder: (context, state) {
@@ -164,6 +167,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             /// 1️⃣ LOADING STATE (after button press)
                             if (state.isLoading) {
                               return loginButton(
+                                context,
                                 color: AppColors.primary,
                                 isLoading: true,
                               );
@@ -172,13 +176,14 @@ class _LoginScreenState extends State<LoginScreen> {
                             /// 2️⃣ ENABLED STATE (valid phone)
                             if (length == 11) {
                               return loginButton(
+                                context,
                                 color: AppColors.primary,
                                 onPressed: _handleLogin,
                               );
                             }
 
                             /// 3️⃣ DISABLED STATE (default)
-                            return loginButton(color: Colors.grey);
+                            return loginButton(context, color: Colors.grey);
                           },
                         ),
                       ],
@@ -194,19 +199,25 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 }
 
-Widget loginButton({
+Widget loginButton(
+  BuildContext context, {
   Color color = AppColors.primary,
   VoidCallback? onPressed,
   bool isLoading = false,
 }) {
+  final height = MediaQuery.of(context).size.height;
+  final width = MediaQuery.of(context).size.width;
+  final btnHeight = (height * 0.07).clamp(48.0, 72.0);
+  final fontSize = (16 * (width / 375)).clamp(14.0, 18.0);
+
   return SizedBox(
-    height: 55,
+    height: btnHeight,
     child: ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(backgroundColor: color),
       child: isLoading
           ? const CircularProgressIndicator(color: Colors.white)
-          : const Text('Continue', style: TextStyle(fontSize: 16)),
+          : Text('Continue', style: TextStyle(fontSize: fontSize)),
     ),
   );
 }
